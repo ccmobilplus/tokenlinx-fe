@@ -4,8 +4,8 @@
     </a>
     <nav class="header-nav">
         <ul class="main-menu">
-            <li><a class="active">Home</a></li>
-            <li><a>MY Properties</a></li>
+            <li><a [class.active]="!filterOnlyMy" routerLink='/home' >Home</a></li>
+            <li><a [class.active]="filterOnlyMy" routerLink='/home/my'>MY Properties</a></li>
             <!--  <li><a >Buy</a></li>
             <li><a >Pages</a>
                 <ul class="sub-menu">
@@ -76,7 +76,7 @@
                     <td>{{data?.address}}</td>
                     <td>{{data?.account_num}}</td>
                     <td>{{data?.zip}}</td>
-                    <td> <button (click)="routeToDetailsPage()" class="details">View Details</button></td>
+                    <td> <button (click)="routeToDetailsPage(data)" class="details">View Details</button></td>
                 </tr>
                 </tbody>
               </table>

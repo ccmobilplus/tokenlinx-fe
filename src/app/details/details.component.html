@@ -5,7 +5,7 @@
     <nav class="header-nav">
         <ul class="main-menu">
             <li><a class="active" routerLink='/home'>Home</a></li>
-            <li><a>MY Properties</a></li>
+            <li><a routerLink='/home/my'>MY Properties</a></li>
             <!--  <li><a >Buy</a></li>
             <li><a >Pages</a>
                 <ul class="sub-menu">
@@ -19,17 +19,77 @@
         </ul>
         <div class="header-right">
             <div class="user-panel">
-                <a class="login">Welcome</a>
+                <a class="login">Welcome, {{userObj?.name}}</a>
                 <a (click)="logout()" class="register">Logout</a>
             </div>
         </div>
     </nav>
 </header>
 
-<section class="hero-section set-bg">
+<section class="hero-section set-bg" *ngIf="note?.id">
     <div class="container">
-        <div class="hero-warp">
-            <h3 class="heading">Coming Soon</h3>
+        <div class="hero-warp row">
+            <div class="col-md-5">
+                <table class="table">
+                    <tr>
+                        <th>Account Number:</th>
+                        <td>{{note.account_num}}</td>
+                    </tr>
+                    <tr>
+                        <th>Legal Description:</th>
+                        <td>{{note.legal_desc}}</td>
+                    </tr>
+                    <tr>
+                        <th>Address:</th>
+                        <td>{{note.address}}</td>
+                    </tr>
+                    <tr>
+                        <th>Owner name:</th>
+                        <td>{{note.claim_user?.name || ''}}</td>
+                    </tr>
+                    <tr>
+                        <th>Property Status:</th>
+                        <td>
+                            <span class="badge bg-success" *ngIf="note.claim_by">Currently Owned</span>
+                            <span class="badge bg-danger" *ngIf="!note.claim_by">Pending Identification</span>
+                        </td>
+                    </tr>
+                    <ng-container *ngIf="note.notes_private">
+                        <tr>
+                            <th>
+                                <hr>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                Number of Floors
+                            </th>
+                            <td>
+                                {{note.notes_private.num_floors}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                Roof Placed in
+                            </th>
+                            <td>
+                                {{note.notes_private.roof_replaced_in}}
+                            </td>
+                        </tr>
+                    </ng-container>
+                    <tr *ngIf="!note.claim_by">
+                        <th></th>
+                        <td style="padding-top: 20px;">
+                            <button class="btn btn-primary" (click)="claimNote()">Claim</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-7 map">
+                <iframe
+                    src="https://www.imersiongis.com/imersiongisclient/imgisMapLiteVer.jsp?srchId=ACCOUNT&srchVal=R100011&stateId=TX&countyName=MONTGOMERY&companyName=TokenLINX$&userId=tokenlinx"
+                    frameborder="0"></iframe>
+            </div>
         </div>
     </div>
     <br>
@@ -39,6 +99,7 @@
 <div class="footer-section">
     <div class="container">
         <div class="row text-white col-md-12 text-center">
-           COPYRIGHT ©2022 ALL TokenLINX, Inc
+            COPYRIGHT ©2022 ALL TokenLINX, Inc
         </div>
     </div>
+</div>

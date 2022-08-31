@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://telluridehub.tokenlinx.com:9181/api/',
+  // apiUrl: 'http://telluridehub.tokenlinx.com:9181/api/',
+  apiUrl: 'http://localhost:9181/api/',
 };
 
 /*

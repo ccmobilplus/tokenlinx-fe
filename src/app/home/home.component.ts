@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
 import { HelperService } from '../services/helper.service';
-import { MainApiService } from '../services/main-api.service'; 
+import { MainApiService } from '../services/main-api.service';
 
 export interface SEARCH {
   county: string;
@@ -18,36 +18,40 @@ export interface SEARCH {
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit,AfterViewInit {
-  searchData:SEARCH[] = [];
+export class HomeComponent implements OnInit, AfterViewInit {
+  searchData: SEARCH[] = [];
   userObj!: any;
   searchForm!: FormGroup;
   public onLocationEnter = new Subject<string>();
   public onLocationEnterSubscriber: any;
-  
+  filterOnlyMy = false;
+
   constructor(private router: Router,
     private toastr: ToastrService,
     private formBuilder: FormBuilder,
-    private mainApiService:MainApiService,
-    private helperService:HelperService,) { }
+    private mainApiService: MainApiService,
+    private helperService: HelperService) {
+      this.filterOnlyMy = this.router.url == '/home/my';
+  }
 
   ngOnInit(): void {
     this.initializeSearchForm();
     this.onSearchValueChange();
-    let user:any = localStorage.getItem('user');
+    let user: any = localStorage.getItem('user');
     this.userObj = JSON.parse(user);
-    this.helperService.onAuthMessage().subscribe(d=>{
-      if(d.authenticate){
+    this.helperService.onAuthMessage().subscribe(d => {
+      if (d.authenticate) {
         this.userObj = d.user;
       }
     });
-    
+
   }
   ngAfterViewInit(): void {
+    this.getSearch('');
     this.getSearchAfterFewSeconds();
   }
 
-  getSearchAfterFewSeconds(){
+  getSearchAfterFewSeconds() {
     this.onLocationEnterSubscriber = this.onLocationEnter.pipe(
       debounceTime(1000),
       distinctUntilChanged())
@@ -59,43 +63,47 @@ export class HomeComponent implements OnInit,AfterViewInit {
       });
   }
 
-  getSearch(value: string){
-    console.log(value,"valuess",this.searchForm.value)
+  getSearch(value: string) {
+    console.log(value, "valuess", this.searchForm.value)
     const searchValue = this.searchForm.value;
     let queryParams = `?type=${searchValue.type}&search=${searchValue.search}`;
+    if(this.filterOnlyMy) {
+      queryParams += `&onlyMe=true`;
+    }
     this.mainApiService.getSearchResult(queryParams).subscribe(
       (resp: any) => {
-        console.log(resp,"respp serach");
-        if(resp.code == 200){
+        if (resp.code == 200) {
           this.searchData = resp.data.result;
         }
 
-    })
+      })
 
   }
 
-  logout(){
+  logout() {
     localStorage.clear();
     this.router.navigate(['/sign-in']);
     this.toastr.success('Logout Successfully', '');
   }
 
-  initializeSearchForm(){
+  initializeSearchForm() {
     this.searchForm = this.formBuilder.group({
       type: ['name', [Validators.required]],
       search: ['', [Validators.required]],
     });
   }
 
-  onSearchValueChange(){
+  onSearchValueChange() {
     this.searchForm.get("search")?.valueChanges.subscribe(x => {
-            if (x && x.length > 0) {
+      if (x && x.length > 0) {
         this.onLocationEnter.next(x)
       }
     })
   }
 
-  routeToDetailsPage(){
-    this.router.navigate(['/search-details']);
+  routeToDetailsPage(data: any) {
+    console.log(data)
+    if (data)
+      this.router.navigate([`/search-details/${data.id}`]);
   }
 }
