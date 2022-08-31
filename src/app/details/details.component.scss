@@ -1,0 +1,840 @@
+/* =================================
+------------------------------------
+  Mondy - Real Estate HTML Template
+  Version: 1.0
+ ------------------------------------
+ ====================================*/
+
+ $color: #019add;
+ $sub_color: #22242b;
+ $font_1: 'Roboto', sans-serif;
+ $font_2: 'Lato', sans-serif;
+ 
+ /*----------------------------------------*/
+ /* Template default CSS
+ /*----------------------------------------*/
+ 
+ html,
+ body {
+	 height: 100%;
+	 font-family: $font_1;
+	 -webkit-font-smoothing: antialiased;
+	 font-smoothing: antialiased;
+ }
+ 
+ h1,
+ h2,
+ h3,
+ h4,
+ h5,
+ h6 {
+	 margin: 0;
+	 color: #322429;
+	 font-weight: 700;
+ }
+ 
+ h1 {
+	 font-size: 70px;
+ }
+ 
+ h2 {
+	 font-size: 36px;
+ }
+ 
+ h3 {
+	 font-size: 30px;
+ }
+ 
+ h4 {
+	 font-size: 24px;
+ }
+ 
+ h5 {
+	 font-size: 18px;
+ }
+ 
+ h6 {
+	 font-size: 16px;
+ }
+ 
+ p {
+	 font-size: 15px;
+	 color: #6a6a6a;
+	 line-height: 2;
+ }
+ 
+ img {
+	 max-width: 100%;
+ }
+ 
+ input,
+ select,
+ button,
+ textarea {
+	 &:focus {
+		 outline: none;
+	 }
+ }
+ 
+ a:hover,
+ a:focus {
+	 text-decoration: none;
+	 outline: none;
+ }
+ 
+ ul,
+ ol {
+	 padding: 0;
+	 margin: 0;
+ }
+ 
+ /*---------------------
+	Helper CSS
+  -----------------------*/
+ 
+ .section-title {
+	 text-align: center;
+	 margin-bottom: 65px;
+	 h2 {
+		 font-size: 72px;
+	 }
+	 p {
+		 padding: 25px 30px 10px;
+		 margin-bottom: 0;
+	 }
+ }
+ 
+ .set-bg {
+	 background-repeat: no-repeat;
+	 background-size: cover;
+	 background-position: top center;
+     background-image: url("../../assets/img/page-top-bg.jpg");
+ }
+ 
+ .spad {
+	 padding-top: 110px;
+	 padding-bottom: 110px;
+ }
+ 
+ .text-white {
+	 h1,
+	 h2,
+	 h3,
+	 h4,
+	 h5,
+	 h6,
+	 p,
+	 span,
+	 li,
+	 a {
+		 color: #fff;
+	 }
+ }
+ 
+ /*---------------------
+	Commom elements
+  -----------------------*/
+ 
+ /* buttons */
+ 
+ .site-btn {
+	 display: inline-block;
+	 border: none;
+	 padding: 21px 44px;
+	 min-width: 156px;
+	 font-size: 16px;
+	 background: $color;
+	 color: #fff;
+	 line-height: normal;
+	 cursor: pointer;
+	 text-transform: uppercase;
+	 text-align: center;
+	 &:hover {
+		 color: #fff;
+	 }
+	 &.sb-light {
+		 background: #fff;
+		 color: #241e1e;
+	 }
+	 &.sb-big {
+		 font-weight: 700;
+		 font-family: $font_2;
+		 padding: 21px 48px;
+	 }
+ }
+ 
+ /* Preloder */
+ 
+ #preloder {
+	 position: fixed;
+	 width: 100%;
+	 height: 100%;
+	 top: 0;
+	 left: 0;
+	 z-index: 999999;
+	 background: #0000004d;
+ }
+ 
+ .loader {
+	 width: 40px;
+	 height: 40px;
+	 position: absolute;
+	 top: 50%;
+	 left: 50%;
+	 margin-top: -13px;
+	 margin-left: -13px;
+	 border-radius: 60px;
+	 animation: loader 0.8s linear infinite;
+	 -webkit-animation: loader 0.8s linear infinite;
+ }
+ 
+ @keyframes loader {
+	 0% {
+		 -webkit-transform: rotate(0deg);
+		 transform: rotate(0deg);
+		 border: 4px solid #f44336;
+		 border-left-color: transparent;
+	 }
+	 50% {
+		 -webkit-transform: rotate(180deg);
+		 transform: rotate(180deg);
+		 border: 4px solid #673ab7;
+		 border-left-color: transparent;
+	 }
+	 100% {
+		 -webkit-transform: rotate(360deg);
+		 transform: rotate(360deg);
+		 border: 4px solid #f44336;
+		 border-left-color: transparent;
+	 }
+ }
+ 
+ @-webkit-keyframes loader {
+	 0% {
+		 -webkit-transform: rotate(0deg);
+		 border: 4px solid #f44336;
+		 border-left-color: transparent;
+	 }
+	 50% {
+		 -webkit-transform: rotate(180deg);
+		 border: 4px solid #673ab7;
+		 border-left-color: transparent;
+	 }
+	 100% {
+		 -webkit-transform: rotate(360deg);
+		 border: 4px solid #f44336;
+		 border-left-color: transparent;
+	 }
+ }
+ 
+ /*------------------
+	Header section
+  ---------------------*/
+ 
+ .header-section {
+	 position: absolute;
+	 width: 100%;
+	 left: 0;
+	 top: 0;
+	 padding: 0 53px;
+	 background: rgba(0, 0, 0, 0.3);
+	 z-index: 999;
+	 &.header-bg-2 {
+		 background: rgba(34, 34, 34, 0.83);
+	 }
+ }
+ 
+ .header-nav {
+	 text-align: right;
+	 padding-top: 35px;
+ }
+ 
+ .site-logo {
+	 float: left;
+	 display: inline-block;
+	 padding: 39px 0;
+ }
+ 
+ .main-menu {
+	 display: inline-block;
+	 padding-right: 30px;
+	 li {
+		 display: inline-block;
+		 position: relative;
+		 a {
+			 display: block;
+			 font-size: 16px;
+			 color: #ffffff;
+			 font-family: $font_2;
+			 padding: 0 1px 5px;
+			 border-bottom: 2px solid transparent;
+			 margin-right: 45px;
+			 -webkit-transition: 0.3s;
+			 transition: 0.3s;
+			 &:hover,
+			 &.active {
+				 border-bottom: 2px solid $color;
+			 }
+		 }
+		 &:hover {
+			 >.sub-menu {
+				 visibility: visible;
+				 opacity: 1;
+				 margin-top: 20px;
+			 }
+		 }
+	 }
+	 .sub-menu {
+		 position: absolute;
+		 list-style: none;
+		 width: 220px;
+		 left: 0;
+		 top: 100%;
+		 text-align: left;
+		 padding: 20px 0;
+		 visibility: hidden;
+		 opacity: 0;
+		 margin-top: 50px;
+		 background: #fff;
+		 z-index: 99;
+		 -webkit-transition: all 0.4s;
+		 transition: all 0.4s;
+		 -webkit-box-shadow: 2px 7px 20px rgba(0, 0, 0, 0.15);
+		 box-shadow: 2px 7px 20px rgba(0, 0, 0, 0.15);
+		 &::before {
+			 position: absolute;
+			 content: "";
+			 left: 15px;
+			 top: -7px;
+			 border-left: 6px solid transparent;
+			 border-right: 6px solid transparent;
+			 border-bottom: 7px solid #fff;
+		 }
+		 &:after {
+			 position: absolute;
+			 content: "";
+			 width: 100%;
+			 height: 20px;
+			 left: 0;
+			 top: -20px;
+		 }
+		 li {
+			 display: block;
+			 a {
+				 display: block;
+				 color: #000;
+				 margin-right: 0;
+				 padding: 5px 20px;
+				 border-bottom: none;
+				 &:hover {
+					 color: $color;
+				 }
+			 }
+		 }
+	 }
+ }
+ 
+ .header-right {
+	 display: inline-block;
+	 a {
+		 color: #fff;
+		 font-size: 16px;
+		 font-family: $font_2;
+		 display: inline-block;
+	 }
+	 .register {
+		 border: 2px solid #fff;
+		 min-width: 130px;
+		 text-align: center;
+		 padding: 8px 15px;
+		 margin-left: 25px;
+	 }
+ }
+ 
+ .slicknav_menu {
+	 display: none;
+ }
+ 
+ /* ----------------
+	Hero section
+  -------------------*/
+ 
+ .hero-section {
+	max-height: auto;
+    padding-top: 250px;
+    min-height: 586px;
+ }
+ 
+ .hero-warp {
+	 padding: 27px 48px 31px;
+	 background: rgba(34, 36, 43, 0.83);
+ }
+ 
+ .main-search-form {
+	 font-family: $font_2;
+	 p {
+		 font-size: 12px;
+		 color: #b6b6b6;
+		 font-style: italic;
+		 margin-bottom: 0;
+	 }
+ }
+ 
+ .search-type {
+	 .st-item {
+		 display: inline-block;
+		 input {
+			 position: absolute;
+			 visibility: hidden;
+			 opacity: 0;
+			 z-index: -1;
+			 &:checked {
+				 +label {
+					 padding: 11px 30px;
+					 background: $color;
+					 &:after {
+						 bottom: -15px;
+						 opacity: 1;
+						 -webkit-transition: all 0.2s ease 0.3s;
+						 transition: all 0.2s ease 0.3s;
+					 }
+				 }
+			 }
+		 }
+	 }
+	 label {
+		 position: relative;
+		 font-family: $font_2;
+		 font-weight: 700;
+		 color: #fff;
+		 padding: 11px 10px;
+		 margin-right: 15px;
+		 margin-bottom: 15px;
+		 cursor: pointer;
+		 text-align: center;
+		 -webkit-transition: all 0.4s;
+		 transition: all 0.4s;
+		 &:after {
+			 position: absolute;
+			 content: "";
+			 bottom: -25px;
+			 left: calc(50% - 4px);
+			 border-left: 4px solid transparent;
+			 border-right: 4px solid transparent;
+			 border-bottom: 7px solid #fff;
+			 opacity: 0;
+		 }
+	 }
+ }
+ 
+ .search-input {
+	 position: relative;
+	 display: -webkit-box;
+	 display: -ms-flexbox;
+	 display: flex;
+	 margin-bottom: 23px;
+	 input {
+		 width: calc(100% - 156px);
+		 height: 71px;
+		 padding-left: 47px;
+		 color: #3a3a3a;
+		 font-style: italic;
+		 border: none;
+	 }
+	 &.si-v-2 {
+		 input {
+			 width: calc(100% - 384px);
+		 }
+		 .sb-light {
+			 margin-left: 25px;
+			 min-width: 203px;
+		 }
+	 }
+ }
+ 
+ /* ----------------
+	Intro section
+  -------------------*/
+ 
+ .intro-first {
+	 margin-bottom: 98px;
+ }
+ 
+ .about-text {
+	 h3 {
+		 margin-bottom: 30px;
+	 }
+	 h2 {
+		 font-size: 72px;
+		 line-height: 1;
+		 margin-bottom: 35px;
+	 }
+	 p {
+		 margin-bottom: 25px;
+	 }
+ }
+ 
+ .readmore-btn {
+	 display: inline-block;
+	 font-size: 18px;
+	 font-weight: 700;
+	 color: $color;
+	 border-bottom: 1px solid $color;
+	 line-height: 1;
+	 &:hover {
+		 color: $color;
+	 }
+ }
+ 
+ 
+ /* ----------------
+	Footer section
+  -------------------*/
+ 
+ .footer-section {
+	 padding: 15px 0 0;
+	 background: $sub_color;
+ }
+ 
+ 
+ /* ----------------
+	Responsive
+  ---------------------*/
+ 
+ @media (min-width: 1200px) {
+	 .container {
+		 max-width: 1176px;
+	 }
+ }
+ 
+ /* Medium screen : 992px. */
+ 
+ @media only screen and (min-width: 992px) and (max-width: 1199px) {
+	 .section-title h2,
+	 .about-text h2 {
+		 font-size: 65px;
+	 }
+	 .main-menu li a {
+		 margin-right: 20px;
+	 }
+	 .about-widget {
+		 margin-right: 15px;
+	 }
+	 .search-result-map {
+		 height: 600px;
+	 }
+	 .search-results {
+		 padding: 55px 30px 90px;
+	 }
+	 .offer-btn {
+		 min-width: 205px;
+	 }
+	 .contact-text {
+		 padding-right: 40px;
+	 }
+	 .blog-item.feature-blog .blog-text {
+		 padding-top: 15px;
+		 padding-bottom: 15px;
+	 }
+	 .blog-item.feature-blog h4 {
+		 margin-bottom: 15px;
+	 }
+ }
+ 
+ /* Tablet :768px. */
+ 
+ @media only screen and (min-width: 768px) and (max-width: 991px) {
+	 .header-section {
+		 padding: 0 15px;
+	 }
+	 .main-menu {
+		 padding-right: 15px;
+		 li a {
+			 margin-right: 15px;
+		 }
+	 }
+	 .header-right .register {
+		 min-width: 110px;
+		 margin-left: 10px;
+	 }
+	 .about-text {
+		 margin-top: 40px;
+	 }
+	 .hero-warp {
+		 padding: 25px 30px 29px;
+	 }
+	 .search-type label {
+		 margin-right: 5px;
+	 }
+	 .search-type .st-item input:checked+label {
+		 padding: 11px 15px;
+	 }
+	 .section-title h2,
+	 .about-text h2 {
+		 font-size: 55px;
+	 }
+	 .loan-form {
+		 display: block;
+		 text-align: center;
+		 padding: 0 50px;
+		 input {
+			 margin-bottom: 30px;
+		 }
+	 }
+	 .about-widget {
+		 border-right: none;
+		 .aw-text {
+			 max-width: 100%;
+		 }
+	 }
+	 .footer-widger h2 {
+		 padding-top: 0;
+	 }
+	 .page-top-section {
+		 height: auto;
+		 padding-bottom: 80px;
+	 }
+	 .sell-section {
+		 padding: 0 20px;
+	 }
+	 .search-result-map {
+		 height: 600px;
+	 }
+	 .sidebar {
+		 padding-top: 50px;
+	 }
+	 .contact-text {
+		 padding-right: 0;
+	 }
+ }
+ 
+ /* Large Mobile :480px. */
+ 
+ @media only screen and (max-width: 767px) {
+	 .header-section {
+		 padding: 0 15px;
+	 }
+	 .site-logo {
+		 padding: 26px 0;
+	 }
+	 .header-nav {
+		 display: none;
+	 }
+	 .slicknav_menu {
+		 padding: 0;
+		 display: block;
+		 background: transparent;
+	 }
+	 .slicknav_menu {
+		 .header-right-warp {
+			 padding: 10px 0;
+			 padding-right: 10px;
+			 border-bottom: 1px solid #111;
+			 text-align: right;
+		 }
+		 .header-right {
+			 .login {
+				 border-bottom: none;
+			 }
+			 .register {
+				 margin-left: 0;
+			 }
+			 a {
+				 &:hover {
+					 background: transparent;
+					 color: #fff;
+				 }
+			 }
+		 }
+	 }
+	 .slicknav_btn {
+		 background: #616161;
+		 margin-top: 29px;
+	 }
+	 .slicknav_nav {
+		 background: $sub-color;
+		 margin-bottom: 30px;
+		 a {
+			 margin: 0;
+			 padding: 10px 20px;
+			 border-bottom: 1px solid #111;
+			 &:hover {
+				 color: $color;
+				 border-radius: 0;
+				 background: #0b0e25;
+			 }
+		 }
+	 }
+	 .slicknav_nav .slicknav_row {
+		 padding: 10px 20px;
+		 margin: 0;
+	 }
+	 .slicknav_row {
+		 a {
+			 border-bottom: none;
+		 }
+	 }
+	 .slicknav_nav .slicknav_row:hover {
+		 border-radius: 0;
+		 background: #0b0e25;
+	 }
+	 .slicknav_parent.slicknav_open {
+		 background: #0b0e25;
+		 color: $color;
+	 }
+	 .hero-section {
+		 height: auto;
+		 max-height: none;
+		 padding-top: 250px;
+		 padding-bottom: 100px;
+	 }
+	 .hero-warp {
+		 padding: 25px 20px 29px;
+	 }
+	 .about-text {
+		 margin-top: 40px;
+	 }
+	 .search-type label {
+		 margin-right: 5px;
+	 }
+	 .search-type .st-item input:checked+label {
+		 padding: 11px;
+	 }
+	 .search-input {
+		 display: block;
+	 }
+	 .search-input input,
+	 .search-input.si-v-2 input {
+		 width: 100%;
+		 padding: 0 20px;
+		 margin-bottom: 20px;
+	 }
+	 .section-title h2,
+	 .about-text h2 {
+		 font-size: 45px;
+	 }
+	 .loan-section {
+		 padding: 0 15px;
+	 }
+	 .loan-form {
+		 display: block;
+		 text-align: center;
+		 padding: 0 15px;
+		 input {
+			 margin-bottom: 30px;
+		 }
+	 }
+	 .about-widget {
+		 border-right: none;
+		 .aw-text {
+			 max-width: 100%;
+		 }
+	 }
+	 .footer-widger h2 {
+		 padding-top: 0;
+	 }
+	 .copyright {
+		 text-align: center;
+	 }
+	 .page-top-section {
+		 height: auto;
+		 padding-bottom: 80px;
+	 }
+	 .search-input.si-v-2 {
+		 margin-bottom: 0;
+		 .site-btn {
+			 margin: 0 25px 25px 0;
+		 }
+	 }
+	 .search-results {
+		 padding: 55px 30px 90px;
+	 }
+	 .search-results .filter-btn li {
+		 margin-right: 10px;
+	 }
+	 .search-result-map {
+		 height: 500px;
+	 }
+	 .sidebar {
+		 padding-top: 50px;
+	 }
+	 .contact-text {
+		 padding-right: 0;
+	 }
+	 .sell-section {
+		 padding: 0 15px;
+	 }
+ }
+ 
+ /* Small Mobile :320px. */
+ 
+ @media only screen and (max-width: 479px) {
+	 .section-title h2,
+	 .about-text h2 {
+		 font-size: 38px;
+	 }
+	 .search-type label:after {
+		 display: none;
+	 }
+	 .section-title p {
+		 padding: 25px 0 10px;
+	 }
+	 .about-widget {
+		 margin-right: 0;
+	 }
+	 .site-btn.sb-big {
+		 padding: 21px 25px;
+	 }
+	 .search-results {
+		 padding: 55px 15px 90px;
+	 }
+	 .search-results .filter-btn li {
+		 margin-right: 0;
+	 }
+	 .property-info-bar {
+		 padding: 11px 15px 13px;
+	 }
+	 .loan-calculator {
+		 padding: 30px 15px 25px;
+	 }
+	 .contact-form {
+		 padding: 50px 20px
+	 }
+	 .contact-form .site-btn {
+		 min-width: auto;
+	 }
+ }
+
+ table {
+	width: 100%;
+  }
+  .mat-table {
+    background: none !important;
+}
+
+th{
+	color: #ffffff !important;
+}
+
+
+td{
+	color: #ffffff !important;
+	font-size: 13px;
+}
+
+.details{
+	display: inline-block;
+	border: none;
+	padding: 5px 25px;
+	background: $color;
+	color: #fff;
+	line-height: normal;
+	cursor: pointer;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+.heading{
+    color: white;
+    text-align: center;
+}
