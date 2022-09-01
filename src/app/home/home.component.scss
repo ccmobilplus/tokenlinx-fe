@@ -109,6 +109,7 @@
 	 background-size: cover;
 	 background-position: top center;
      background-image: url("../../assets/img/hero-bg.jpg");
+	 min-height: 1045px !important;
  }
  
  .spad {
@@ -487,15 +488,7 @@
  }
  
  
- /* ----------------
-	Footer section
-  -------------------*/
- 
- .footer-section {
-	 padding: 15px 0 0;
-	 background: $sub_color;
- }
- 
+
  
  /* ----------------
 	Responsive

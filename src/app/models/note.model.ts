@@ -31,4 +31,5 @@ export class NoteModel {
 
     claim_user?: any;
     notes_private?: any;
+    note_owner?: any;
 }

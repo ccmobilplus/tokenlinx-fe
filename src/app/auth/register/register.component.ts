@@ -71,7 +71,6 @@ export class RegisterComponent implements OnInit {
     this.spinner.show();
     this.authService.createUser(this.registerForm.value).subscribe(
       (resp: any) => {
-        console.log(resp,'ressss')
         if(resp.code == 200){
           this.helperService.sendMesg({ authenticate: true, user: resp.data.user });
           localStorage.setItem('user',JSON.stringify(resp.data.user));

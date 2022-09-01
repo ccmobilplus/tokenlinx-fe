@@ -29,6 +29,10 @@
 <section class="hero-section set-bg" *ngIf="note?.id">
     <div class="container">
         <div class="hero-warp row">
+            <div class="col-md-12">
+                <h2 class="text-white">Property Details</h2>
+                <hr>
+            </div>
             <div class="col-md-5">
                 <table class="table">
                     <tr>
@@ -45,7 +49,14 @@
                     </tr>
                     <tr>
                         <th>Owner name:</th>
-                        <td>{{note.claim_user?.name || ''}}</td>
+                        <td>
+                            <ng-container *ngIf="note.note_owner?.first_name">
+                                {{note.note_owner?.first_name}}
+                            </ng-container>
+                            <ng-container *ngIf="note.note_owner?.last_name">
+                                &nbsp;{{note.note_owner?.last_name}}
+                            </ng-container>
+                        </td>
                     </tr>
                     <tr>
                         <th>Property Status:</th>
@@ -96,10 +107,4 @@
     <br>
 </section>
 
-<div class="footer-section">
-    <div class="container">
-        <div class="row text-white col-md-12 text-center">
-            COPYRIGHT ©2022 ALL TokenLINX, Inc
-        </div>
-    </div>
-</div>
+<app-footer></app-footer>

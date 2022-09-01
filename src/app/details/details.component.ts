@@ -9,7 +9,7 @@ import { NoteModel } from '../models';
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
-  styleUrls: ['./details.component.scss']
+  styleUrls: ['./details.component.scss', '../home/home.component.scss']
 })
 export class DetailsComponent implements OnInit, OnDestroy {
 

@@ -4,7 +4,7 @@
     </a>
     <nav class="header-nav">
         <ul class="main-menu">
-            <li><a [class.active]="!filterOnlyMy" routerLink='/home' >Home</a></li>
+            <li><a [class.active]="!filterOnlyMy" routerLink='/home'>Home</a></li>
             <li><a [class.active]="filterOnlyMy" routerLink='/home/my'>MY Properties</a></li>
             <!--  <li><a >Buy</a></li>
             <li><a >Pages</a>
@@ -29,57 +29,71 @@
 <section class="hero-section set-bg">
     <div class="container">
         <div class="hero-warp">
+            <div class="col-md-12">
+                <h2 class="text-white">
+                    {{filterOnlyMy ? 'My Property' : 'Search Property'}}
+                </h2>
+                <hr>
+            </div>
             <form class="main-search-form">
                 <form [formGroup]="searchForm">
 
-                <div class="search-type">
-                    <div class="st-item">
-                        <input formControlName="type" value="name" type="radio"  id="name">
-                        <label for="name">Name</label>
+                    <div class="search-type">
+                        <div class="st-item">
+                            <input formControlName="type" value="name" type="radio" id="name">
+                            <label for="name">Name</label>
+                        </div>
+                        <div class="st-item">
+                            <input formControlName="type" value="address" type="radio" id="address">
+                            <label for="address">Address</label>
+                        </div>
+                        <div class="st-item">
+                            <input formControlName="type" value="account" type="radio" id="account">
+                            <label for="account">Account</label>
+                        </div>
+                        <div class="st-item">
+                            <input formControlName="type" value="zip" type="radio" id="zip">
+                            <label for="zip">Zip</label>
+                        </div>
                     </div>
-                    <div class="st-item">
-                        <input formControlName="type" value="address" type="radio"  id="address">
-                        <label for="address">Address</label>
+                    <div class="search-input">
+                        <input formControlName="search" type="text"
+                            placeholder="Search by Name, Address, Account or Zip">
+                        <button class="site-btn">Search</button>
                     </div>
-                    <div class="st-item">
-                        <input formControlName="type" value="account" type="radio"  id="account">
-                        <label for="account">Account</label>
-                    </div>
-                    <div class="st-item">
-                        <input formControlName="type" value="zip" type="radio" id="zip">
-                        <label for="zip">Zip</label>
-                    </div>
-                </div>
-                <div class="search-input">
-                    <input formControlName="search" type="text" placeholder="Search by Name, Address, Account or Zip">
-                    <button class="site-btn">Search</button>
-                </div>
                 </form>
                 <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                     et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. </p> -->
-                    
+
             </form>
             <div class="table-responsive" *ngIf="searchData.length > 0">
-              <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th scope="col">NAME</th>
-                    <th scope="col">Address</th>
-                    <th scope="col">Account</th>
-                    <th scope="col">Zip</th>
-                    <th scope="col">Details</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let data of searchData">
-                    <td>{{data?.county}}</td>
-                    <td>{{data?.address}}</td>
-                    <td>{{data?.account_num}}</td>
-                    <td>{{data?.zip}}</td>
-                    <td> <button (click)="routeToDetailsPage(data)" class="details">View Details</button></td>
-                </tr>
-                </tbody>
-              </table>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">NAME</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Account</th>
+                            <th scope="col">Zip</th>
+                            <th scope="col">Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of searchData">
+                            <td>
+                                <ng-container *ngIf="data?.note_owner?.first_name">
+                                    {{data?.note_owner?.first_name}}
+                                </ng-container>
+                                <ng-container *ngIf="data?.note_owner?.last_name">
+                                    &nbsp;{{data?.note_owner?.last_name}}
+                                </ng-container>
+                            </td>
+                            <td>{{data?.address}}</td>
+                            <td>{{data?.account_num}}</td>
+                            <td>{{data?.zip}}</td>
+                            <td> <button (click)="routeToDetailsPage(data)" class="details">View Details</button></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -87,9 +101,4 @@
     <br>
 </section>
 
-<div class="footer-section">
-    <div class="container">
-        <div class="row text-white col-md-12 text-center">
-           COPYRIGHT ©2022 ALL TokenLINX, Inc
-        </div>
-    </div>
+<app-footer></app-footer>

@@ -11,6 +11,7 @@ export interface SEARCH {
   address: string;
   account_num: string;
   zip: string;
+  note_owner?: any
 }
 
 @Component({
@@ -31,7 +32,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     private formBuilder: FormBuilder,
     private mainApiService: MainApiService,
     private helperService: HelperService) {
-      this.filterOnlyMy = this.router.url == '/home/my';
+    this.filterOnlyMy = this.router.url == '/home/my';
   }
 
   ngOnInit(): void {
@@ -47,7 +48,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   }
   ngAfterViewInit(): void {
-    this.getSearch('');
+    if (this.filterOnlyMy) {
+      this.getSearch('');
+    }
     this.getSearchAfterFewSeconds();
   }
 
@@ -64,16 +67,15 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   getSearch(value: string) {
-    console.log(value, "valuess", this.searchForm.value)
     const searchValue = this.searchForm.value;
     let queryParams = `?type=${searchValue.type}&search=${searchValue.search}`;
-    if(this.filterOnlyMy) {
+    if (this.filterOnlyMy) {
       queryParams += `&onlyMe=true`;
     }
     this.mainApiService.getSearchResult(queryParams).subscribe(
       (resp: any) => {
         if (resp.code == 200) {
-          this.searchData = resp.data.result;
+          this.searchData = resp.data.result ? resp.data.result : [];
         }
 
       })
@@ -102,7 +104,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   routeToDetailsPage(data: any) {
-    console.log(data)
     if (data)
       this.router.navigate([`/search-details/${data.id}`]);
   }

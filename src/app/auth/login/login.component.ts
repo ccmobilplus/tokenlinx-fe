@@ -50,7 +50,6 @@ export class LoginComponent implements OnInit {
     this.spinner.show();
     this.authService.login(this.loginForm.value).subscribe(
       (resp: any) => {
-        console.log(resp,'ressss')
         if(resp.code == 200){
           this.helperService.sendMesg({ authenticate: true, user: resp.data.user });
           localStorage.setItem('user',JSON.stringify(resp.data.user));
