@@ -96,10 +96,10 @@
                     </tr>
                 </table>
             </div>
-            <div class="col-md-8 map">
+            <div class="col-md-8 map">{{note.map_link}}
                 <iframe
-                    src="https://www.imersiongis.com/imersiongisclient/imgisMapLiteVer.jsp?srchId=ACCOUNT&srchVal=R100011&stateId=TX&countyName=MONTGOMERY&companyName=TokenLINX$&userId=tokenlinx"
-                    frameborder="0"></iframe>
+                    [src]="note.map_link | safe: 'resourceUrl'"
+                    frameborder="0" scrolling=no></iframe>
             </div>
         </div>
     </div>
